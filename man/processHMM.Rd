@@ -2,7 +2,7 @@
 % Please edit documentation in R/prediction_object.R
 \name{processHMM}
 \alias{processHMM}
-\title{Processes HMM model object for transition probability matrix prediction}
+\title{Processes HMM model object}
 \usage{
 processHMM(mod)
 }
@@ -14,7 +14,7 @@ list containing original covariates \code{covs} and a function \code{predict_tpm
 to predict the transition probability matrix
 }
 \description{
-Processes HMM model object for transition probability matrix prediction
+Extracts covariates and sets up a prediction function for the transition probability matrix
 }
 \examples{
 # no examples

@@ -1,4 +1,6 @@
-#' Processes HMM model object for transition probability matrix prediction
+#' Processes HMM model object
+#'
+#' Extracts covariates and sets up a prediction function for the transition probability matrix
 #'
 #' @param mod model object as returned by `moveHMM`, `momentuHMM` or `hmmTMB`
 #'
