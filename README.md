@@ -6,7 +6,8 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of statedist is to …
+Compute covariate-dependent state-distributions from fitted hidden
+Markov models.
 
 ## Installation
 
