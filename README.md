@@ -4,6 +4,7 @@
 # statedist
 
 <!-- badges: start -->
+<!-- [![R-CMD-check](https://github.com/janoleko/statedist/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/janoleko/statedist/actions/workflows/R-CMD-check.yaml) -->
 <!-- badges: end -->
 
 Compute covariate-dependent state-distributions from fitted hidden
