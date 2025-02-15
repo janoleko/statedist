@@ -11,21 +11,21 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
-// compute_unconditional_state_distributions
-arma::mat compute_unconditional_state_distributions(const arma::vec& delta, const arma::cube& Gamma);
-RcppExport SEXP _statedist_compute_unconditional_state_distributions(SEXP deltaSEXP, SEXP GammaSEXP) {
+// calc_statedist
+arma::mat calc_statedist(const arma::vec& delta, const arma::cube& Gamma);
+RcppExport SEXP _statedist_calc_statedist(SEXP deltaSEXP, SEXP GammaSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const arma::vec& >::type delta(deltaSEXP);
     Rcpp::traits::input_parameter< const arma::cube& >::type Gamma(GammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(compute_unconditional_state_distributions(delta, Gamma));
+    rcpp_result_gen = Rcpp::wrap(calc_statedist(delta, Gamma));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_statedist_compute_unconditional_state_distributions", (DL_FUNC) &_statedist_compute_unconditional_state_distributions, 2},
+    {"_statedist_calc_statedist", (DL_FUNC) &_statedist_calc_statedist, 2},
     {NULL, NULL, 0}
 };
 
