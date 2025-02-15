@@ -45,15 +45,14 @@ process_hmm <- function(mod){
       )
     }
   } else if(inherits(mod, "HMM")){ # hmmTMB
-
+    # building desing matrices is slower in hmmTMB - and happens inside HMM$predict()
     cat("hmmTMB model provided - simulation methods will be slower\n")
 
-    ## extract covariates
-    # extract original data
-    data <- mod$.__enclos_env__$private$obs_$data()
-    # now find covariate names
+    ## find covariate names
     cov_names <- unique(rapply(mod$hid()$formulas(), all.vars))
     cov_names <- cov_names[which(cov_names!="pi")]
+
+    ## store raw covariates
     self$covs <- mod$obs()$data()[,cov_names]
 
     ## create tpm prediction function that only needs covariates
