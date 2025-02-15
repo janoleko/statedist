@@ -1,6 +1,6 @@
 Package: statedist
 Title: Visualise State Distributions in HMMs
-Version: 0.0.0.9000
+Version: 0.0.0.9
 Authors@R: c(
     person("Jan-Ole", "Koslik", , "jan-ole.koslik@uni-bielefeld.de", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0004-1556-9053")),
