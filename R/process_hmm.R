@@ -13,7 +13,7 @@
 #' @importFrom stats as.formula
 #'
 #' @examples
-#' # no examples
+#' # no examples yet
 process_hmm <- function(mod){
   ## initialise self object
   self <- list()

@@ -17,5 +17,5 @@ to predict the transition probability matrix for new covariate values
 Extracts covariates and sets up a prediction function for the transition probability matrix
 }
 \examples{
-# no examples
+# no examples yet
 }
