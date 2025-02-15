@@ -10,6 +10,7 @@
 #'
 #' @importFrom moveHMM predictTPM
 #' @importFrom momentuHMM getTrProbs
+#' @importFrom stats as.formula
 #'
 #' @examples
 #' # no examples
@@ -51,12 +52,9 @@ processHMM <- function(mod){
     # extract original data
     data <- mod$.__enclos_env__$private$obs_$data()
     # now find covariate names
-    forms <- c(mod$hid()$formula())
-    forms <- forms[forms != "."]
-    forms <- sapply(forms, as.formula)
-    cov_names <- unique(unlist(lapply(forms, all.vars)))
-    ## store raw covariates
-    self$covs <- data[, cov_names]
+    cov_names <- unique(rapply(mod$hid()$formulas(), all.vars))
+    cov_names <- cov_names[which(cov_names!="pi")]
+    self$covs <- mod$obs()$data()[,cov_names]
 
     ## create tpm prediction function that only needs covariates
     self$predict_tpm <- function(newcovs = self$covs){

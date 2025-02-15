@@ -4,10 +4,13 @@ Version: 0.0.0.9000
 Authors@R: c(
     person("Jan-Ole", "Koslik", , "jan-ole.koslik@uni-bielefeld.de", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0004-1556-9053")),
-    person("Maya", "Vienken", role = c("aut", "cre")))
+    person("Maya", "Vienken", role = "aut"))
 Description: Hidden Markov models whose state processes are driven by covariates are widely used in many fields. This package provides functions to visualise the state distributions of such models. The package is designed to work seamlessly with many popular R packages for HMMs.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Imports:
+    moveHMM,
+    momentuHMM
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 URL: https://github.com/janoleko/statedist

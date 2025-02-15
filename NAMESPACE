@@ -3,3 +3,4 @@
 export(processHMM)
 importFrom(momentuHMM,getTrProbs)
 importFrom(moveHMM,predictTPM)
+importFrom(stats,as.formula)
