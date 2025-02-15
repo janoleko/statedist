@@ -6,9 +6,10 @@ Authors@R: c(
            comment = c(ORCID = "0009-0004-1556-9053")),
     person("Maya", "Vienken", role = "aut"))
 Description: Hidden Markov models whose state processes are driven by covariates are widely used in many fields. This package provides functions to visualise the state distributions of such models. The package is designed to work seamlessly with many popular R packages for HMMs.
-License: MIT + file LICENSE
+License: GPL-3
 Encoding: UTF-8
 Imports:
+    Rcpp,
     moveHMM,
     momentuHMM
 Roxygen: list(markdown = TRUE)
