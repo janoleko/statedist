@@ -50,7 +50,7 @@ process_hmm <- function(mod){
 
     ## find covariate names
     cov_names <- unique(rapply(mod$hid()$formulas(), all.vars))
-    cov_names <- cov_names[which(cov_names!="pi")]
+    cov_names <- cov_names[which(cov_names != "pi")]
 
     ## store raw covariates
     self$covs <- mod$obs()$data()[,cov_names]
