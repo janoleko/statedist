@@ -14,7 +14,7 @@
 #'
 #' @examples
 #' # no examples
-processHMM <- function(mod){
+process_hmm <- function(mod){
   ## initialise self object
   self <- list()
 
@@ -65,6 +65,6 @@ processHMM <- function(mod){
     }
   }
 
-  class(self) <- "processedHMM"
+  # class(self) <- "processed_hmm"
   return(self)
 }
