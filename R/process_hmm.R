@@ -5,7 +5,7 @@
 #' @param mod model object as returned by `moveHMM`, `momentuHMM` or `hmmTMB`
 #'
 #' @return list containing original covariates `covs` and a function `predict_tpm`
-#' to predict the transition probability matrix
+#' to predict the transition probability matrix for new covariate values
 #' @export
 #'
 #' @importFrom moveHMM predictTPM

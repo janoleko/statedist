@@ -11,7 +11,7 @@ process_hmm(mod)
 }
 \value{
 list containing original covariates \code{covs} and a function \code{predict_tpm}
-to predict the transition probability matrix
+to predict the transition probability matrix for new covariate values
 }
 \description{
 Extracts covariates and sets up a prediction function for the transition probability matrix
