@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   Intro_to_statedist: Intro_to_statedist.html
-last_built: 2025-02-15T10:43Z
+last_built: 2025-02-15T10:53Z
 urls:
   reference: https://janoleko.github.io/reference
   article: https://janoleko.github.io/articles
