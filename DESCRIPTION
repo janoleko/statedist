@@ -1,10 +1,11 @@
 Package: statedist
-Title: What the Package Does (One Line, Title Case)
+Title: Visualise State Distributions in HMMs
 Version: 0.0.0.9000
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Authors@R: c(
+    person("Jan-Ole", "Koslik", , "jan-ole.koslik@uni-bielefeld.de", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0004-1556-9053")),
+    person("Maya", "Vienken", role = c("aut", "cre")))
+Description: Hidden Markov models whose state processes are driven by covariates are widely used in many fields. This package provides functions to visualise the state distributions of such models. The package is designed to work seamlessly with many popular R packages for HMMs.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
