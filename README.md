@@ -7,7 +7,7 @@
 <!-- [![R-CMD-check](https://github.com/janoleko/statedist/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/janoleko/statedist/actions/workflows/R-CMD-check.yaml) -->
 <!-- badges: end -->
 
-Visualise covariate-dependent state-distributions from fitted hidden
+Visualise covariate-dependent state-distributions of fitted hidden
 Markov models.
 
 ## Installation
