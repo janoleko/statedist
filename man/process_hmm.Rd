@@ -10,8 +10,11 @@ process_hmm(mod)
 \item{mod}{model object as returned by \code{moveHMM}, \code{momentuHMM} or \code{hmmTMB}}
 }
 \value{
-list containing original covariates \code{covs} and a function \code{predict_tpm}
-to predict the transition probability matrix for new covariate values
+list containing:
+\item{covs}{original covariates}
+\item{predict_tpm}{function to predict the transition probability matrix for new covariate values}
+\item{n_states}{number of states}
+\item{colors}{color palette of length \code{n_states} for plotting}
 }
 \description{
 Extracts covariates and sets up a prediction function for the transition probability matrix

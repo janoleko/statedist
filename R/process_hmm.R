@@ -4,8 +4,11 @@
 #'
 #' @param mod model object as returned by `moveHMM`, `momentuHMM` or `hmmTMB`
 #'
-#' @return list containing original covariates `covs` and a function `predict_tpm`
-#' to predict the transition probability matrix for new covariate values
+#' @return list containing:
+#' \item{covs}{original covariates}
+#' \item{predict_tpm}{function to predict the transition probability matrix for new covariate values}
+#' \item{n_states}{number of states}
+#' \item{colors}{color palette of length \code{n_states} for plotting}
 #' @export
 #'
 #' @importFrom moveHMM predictTPM
@@ -32,6 +35,13 @@ process_hmm <- function(mod){
                  newData = newcovs,
                  beta = beta)
     }
+
+    ## store number of states
+    self$n_states <- ncol(mod$mle$stepPar)
+
+    ## store colors
+    self$colors <- moveHMM:::getPalette(self$n_states)
+
   } else if(inherits(mod, "momentuHMM")){
     ## store raw covariates
     self$covs <- cbind(mod$data$ID, mod$rawCovs)
@@ -48,6 +58,19 @@ process_hmm <- function(mod){
         formula = mod$conditions$formula
       )
     }
+
+    ## store number of states
+    self$n_states <- length(mod$stateNames)
+
+    ## store colors
+    if(self$n_states < 8){
+      self$colors <- c("#E69F00", "#56B4E9", "#009E73",
+                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")[1:self$n_states]
+    } else if(self$n_states >= 8){
+      hues <- seq(15, 375, length = self$n_states + 1)
+      self$colors <- grDevices::hcl(h = hues, l = 65, c = 100)[1:self$n_states]
+    }
+
   } else if(inherits(mod, "HMM")){ # hmmTMB
     # building desing matrices is slower in hmmTMB - and happens inside HMM$predict()
     cat("hmmTMB model provided - simulation methods will be slower\n")
@@ -65,6 +88,18 @@ process_hmm <- function(mod){
       mod$predict(what = "tpm",
                   newdata = newcovs)
       # fairly slow, because runs make_matrices for each parameter
+    }
+
+    ## store number of states
+    self$n_states <- mod$hid()$nstates()
+
+    ## store colors
+    if(self$n_states < 7){
+      self$colors <- c("#00798c", "#d1495b", "#edae49", "#66a182",
+                       "#2e4057", "#8d96a3")[1:self$n_states]
+    } else if(self$n_states >= 7){
+      hues <- seq(15, 375, length = self$n_states + 1)
+      self$colors <- grDevices::hcl(h = hues, l = 65, c = 100)[1:self$n_states]
     }
   }
 
