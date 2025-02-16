@@ -54,7 +54,7 @@ process_hmm <- function(mod){
       getTrProbs(
         data = newcovs,
         nbStates = length(mod$stateNames),
-        beta = mod$mle$beta,
+        beta = beta,
         formula = mod$conditions$formula
       )
     }
