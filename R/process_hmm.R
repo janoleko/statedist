@@ -21,21 +21,25 @@ process_hmm <- function(mod){
   ## determine which type of model is provided
   if(inherits(mod, "moveHMM")){
     ## store raw covariates
-    self$covs <- mod$rawCovs
+    self$covs <- cbind(mod$data$ID, mod$rawCovs)
 
     ## create tpm prediction function that only needs covariates
-    self$predict_tpm <- function(newcovs = self$covs){
+    self$predict_tpm <- function(newcovs = self$covs, beta = NULL){
+      # when beta is not provided, use the MLE
+      if(is.null(beta)) beta <- mod$mle$beta
       # moveHMM has simple predictTPM function
       predictTPM(m = mod,
                  newData = newcovs,
-                 beta = mod$mle$beta)
+                 beta = beta)
     }
   } else if(inherits(mod, "momentuHMM")){
     ## store raw covariates
-    self$covs <- mod$rawCovs
+    self$covs <- cbind(mod$data$ID, mod$rawCovs)
 
     ## create tpm prediction function that only needs covariates
-    self$predict_tpm <- function(newcovs = self$covs){
+    self$predict_tpm <- function(newcovs = self$covs, beta){
+      # when beta is not provided, use the MLE
+      if(is.null(beta)) beta <- mod$mle$beta
       # momentuHMM has getTrProbs function
       getTrProbs(
         data = newcovs,
@@ -53,7 +57,7 @@ process_hmm <- function(mod){
     cov_names <- cov_names[which(cov_names != "pi")]
 
     ## store raw covariates
-    self$covs <- mod$obs()$data()[,cov_names]
+    self$covs <- mod$obs()$data()[,c("ID", cov_names)]
 
     ## create tpm prediction function that only needs covariates
     self$predict_tpm <- function(newcovs = self$covs){
@@ -64,6 +68,5 @@ process_hmm <- function(mod){
     }
   }
 
-  # class(self) <- "processed_hmm"
   return(self)
 }
