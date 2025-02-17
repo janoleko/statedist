@@ -26,6 +26,9 @@ process_hmm <- function(mod){
     ## store raw covariates
     self$covs <- cbind(mod$data$ID, mod$rawCovs)
 
+    ## store covariate names, mainly for determining whether ID is included
+    self$cov_names <- all.vars(mod$conditions$formula)
+
     ## create tpm prediction function that only needs covariates
     self$predict_tpm <- function(newcovs = self$covs, beta = NULL){
       # when beta is not provided, use the MLE
@@ -40,11 +43,14 @@ process_hmm <- function(mod){
     self$n_states <- ncol(mod$mle$stepPar)
 
     ## store colors
-    self$colors <- moveHMM:::getPalette(self$n_states)
+    self$colors <- getPalette(self$n_states)
 
   } else if(inherits(mod, "momentuHMM")){
     ## store raw covariates
     self$covs <- cbind(mod$data$ID, mod$rawCovs)
+
+    ## store covariate names, mainly for determining whether ID is included
+    self$cov_names <- all.vars(mod$conditions$formula)
 
     ## create tpm prediction function that only needs covariates
     self$predict_tpm <- function(newcovs = self$covs, beta){
@@ -63,24 +69,18 @@ process_hmm <- function(mod){
     self$n_states <- length(mod$stateNames)
 
     ## store colors
-    if(self$n_states < 8){
-      self$colors <- c("#E69F00", "#56B4E9", "#009E73",
-                       "#F0E442", "#0072B2", "#D55E00", "#CC79A7")[1:self$n_states]
-    } else if(self$n_states >= 8){
-      hues <- seq(15, 375, length = self$n_states + 1)
-      self$colors <- grDevices::hcl(h = hues, l = 65, c = 100)[1:self$n_states]
-    }
+    self$colors <- getPalette(self$n_states)
 
   } else if(inherits(mod, "HMM")){ # hmmTMB
     # building desing matrices is slower in hmmTMB - and happens inside HMM$predict()
     cat("hmmTMB model provided - simulation methods will be slower\n")
 
     ## find covariate names
-    cov_names <- unique(rapply(mod$hid()$formulas(), all.vars))
-    cov_names <- cov_names[which(cov_names != "pi")]
+    self$cov_names <- unique(rapply(mod$hid()$formulas(), all.vars))
+    self$cov_names  <- self$cov_names [which(self$cov_names != "pi")]
 
     ## store raw covariates
-    self$covs <- mod$obs()$data()[,c("ID", cov_names)]
+    self$covs <- mod$obs()$data()[,c("ID", self$cov_names)]
 
     ## create tpm prediction function that only needs covariates
     self$predict_tpm <- function(newcovs = self$covs){
@@ -104,4 +104,26 @@ process_hmm <- function(mod){
   }
 
   return(self)
+}
+
+
+#' Discrete colour palette for states
+#'
+#' @param n_states Number of states
+#'
+#' @return Vector of colours, of length n_states
+#'
+#' @importFrom grDevices hcl
+getPalette <- function(n_states) {
+  if(n_states < 8) {
+    # color-blind friendly palette
+    pal <- c("#E69F00", "#56B4E9", "#009E73",
+             "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+    col <- pal[1:n_states]
+  } else {
+    # to make sure that all colours are distinct (emulate ggplot default palette)
+    hues <- seq(15, 375, length = n_states + 1)
+    col <- hcl(h = hues, l = 65, c = 100)[1:n_states]
+  }
+  return(col)
 }
