@@ -2,7 +2,9 @@
 
 export(calc_statedist)
 export(process_hmm)
+export(statedist)
 importFrom(Rcpp,evalCpp)
+importFrom(grDevices,hcl)
 importFrom(momentuHMM,getTrProbs)
 importFrom(moveHMM,predictTPM)
 importFrom(stats,as.formula)
