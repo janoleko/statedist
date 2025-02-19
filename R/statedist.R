@@ -26,4 +26,5 @@ statedist <- function(mod, method = "gamlss"){
   ## set class and return
   class(state_dist) <- "statedist"
   return(state_dist)
+  # test
 }
